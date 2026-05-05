@@ -1,0 +1,22 @@
+
+//SNR PCM
+f = 2;
+fs = 2000*f;
+t = 0:1/fs:1;
+a = 2;
+x = a* sin(2 * %pi *f*t);
+msg = x+a;
+q = round(msg);
+bin = dec2bin(q);
+dec = bin2dec(bin);
+recover_signal = dec - a;
+
+subplot(3,1,1);
+plot(t,x); //original signal
+title("Original signal");
+
+subplot(3,1,2);
+plot(t,recover_signal); //original signal
+title("Recovered signal");
+//SNRo = 1.8 + 6*n;
+disp(' Output Signal to Noise Ratio in dB : ',SNRo)
