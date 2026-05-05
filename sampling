@@ -1,0 +1,28 @@
+clc;
+clear;
+clf;
+
+// Time
+t = 0:0.001:1;
+
+// Parameters (fixed values for exam)
+fm = 2;      // Message frequency
+fc = 20;     // Sampling frequency
+a  = 2;      // Amplitude
+
+// Message signal
+m = a * sin(2 * %pi * fm * t);
+
+// Carrier (square wave)
+c = squarewave(2 * %pi * fc * t);
+
+// Convert square wave to 0 and 1
+c(c < 0) = 0;
+
+// Natural Sampling (PAM)
+s = m .* c;
+
+// Plot
+subplot(3,1,1); plot(t, m); title("Message Signal");
+subplot(3,1,2); plot(t, c); title("Carrier Signal");
+subplot(3,1,3); plot(t, s); title("Sampled Signal");
